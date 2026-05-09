@@ -1,0 +1,503 @@
+import os
+print(os.getcwd())
+C:\Users\ORIGIN
+print()
+os.chdir('D:\STAT 2205')
+os.listdir()
+os.rename('dataset','d')
+---------------------------------------------------------------------------
+FileNotFoundError                         Traceback (most recent call last)
+Cell In[8], line 2
+      1 os.listdir()
+----> 2 os.rename('dataset','d')
+
+FileNotFoundError: [WinError 2] The system cannot find the file specified: 'dataset' -> 'd'
+print('renamed successfully!')
+renamed successfully!
+os.chdir('D:\STAT 2205\d')
+os.listdir()
+['.RData',
+ '.Rhistory',
+ 'annual-enterprise-survey-2024-financial-year-provisional.csv',
+ 'annual-enterprise-survey-2024-financial-year-provisional.xlsx',
+ 'flight_data.csv',
+ 'lung_disease_data.csv',
+ 'R1.R',
+ 'R2.R',
+ 'R3.R',
+ 'real_estate.sav',
+ 'Real_Estate_Data_SPSS.xlsx',
+ 'report.html',
+ 'Rplot.png',
+ 'Rplot01.pdf',
+ 'Rplot02.pdf',
+ 'Rplot03.pdf',
+ 'Rplot04.png',
+ 'Rplot05.png',
+ 'Rplot06.png',
+ 'Rplot07.png',
+ 'Rplot08.png',
+ 'Rplot09.png',
+ 'Rplot10.png',
+ 'Rplot11.png',
+ 'sales.csv',
+ 'sales.xlsx',
+ 'Untitled1.ipynb',
+ 'yc-siu-FuRsB1qFJSU-unsplash.jpg']
+import pandas as pd
+df=pd.read_csv('flight_data.csv')
+df.head()
+miles	passengers	delay	inflight_meal	inflight_entertainment	inflight_wifi	day_of_week	redeye	weekend	coach_price	firstclass_price	hours
+0	792	172	0	No	Yes	Yes	Sunday	Yes	Yes	338.820	1571.02	1
+1	3163	214	0	No	Yes	Yes	Sunday	No	Yes	472.655	1663.70	6
+2	1832	212	0	No	Yes	No	Friday	No	Yes	351.960	1429.86	3
+3	925	213	0	No	Yes	Yes	Saturday	No	Yes	387.835	1558.76	2
+4	967	217	0	Yes	Yes	Yes	Monday	No	No	374.735	1245.58	2
+print(pd.options.display.max_rows)
+60
+print(df)
+        miles  passengers  delay inflight_meal inflight_entertainment  \
+0         792         172      0            No                    Yes   
+1        3163         214      0            No                    Yes   
+2        1832         212      0            No                    Yes   
+3         925         213      0            No                    Yes   
+4         967         217      0           Yes                    Yes   
+...       ...         ...    ...           ...                    ...   
+129775    674         217   1487            No                    Yes   
+129776   2125         208   1479            No                    Yes   
+129777   1702         220   1501            No                    Yes   
+129778   2709         205   1484            No                    Yes   
+129779   4005         214   1490            No                    Yes   
+
+       inflight_wifi day_of_week redeye weekend  coach_price  \
+0                Yes      Sunday    Yes     Yes      338.820   
+1                Yes      Sunday     No     Yes      472.655   
+2                 No      Friday     No     Yes      351.960   
+3                Yes    Saturday     No     Yes      387.835   
+4                Yes      Monday     No      No      374.735   
+...              ...         ...    ...     ...          ...   
+129775           Yes      Friday     No     Yes      383.240   
+129776           Yes      Friday     No     Yes      397.825   
+129777           Yes      Friday     No     Yes      380.980   
+129778           Yes    Saturday     No     Yes      485.185   
+129779           Yes    Saturday     No     Yes      446.395   
+
+        firstclass_price  hours  
+0                1571.02      1  
+1                1663.70      6  
+2                1429.86      3  
+3                1558.76      2  
+4                1245.58      2  
+...                  ...    ...  
+129775           1478.70      1  
+129776           1616.01      4  
+129777           1481.49      3  
+129778           1589.70      5  
+129779           1677.54      7  
+
+[129780 rows x 12 columns]
+print(df.describe(include='all'))
+                miles     passengers          delay inflight_meal  \
+count   129780.000000  129780.000000  129780.000000        129780   
+unique            NaN            NaN            NaN             2   
+top               NaN            NaN            NaN            No   
+freq              NaN            NaN            NaN         90813   
+mean      2006.224696     207.723155      13.162845           NaN   
+std        943.034768      12.776363      41.941680           NaN   
+min         12.000000     135.000000       0.000000           NaN   
+25%       1343.000000     204.000000       9.000000           NaN   
+50%       1986.000000     210.000000      10.000000           NaN   
+75%       2468.000000     215.000000      13.000000           NaN   
+max       4548.000000     244.000000    1560.000000           NaN   
+
+       inflight_entertainment inflight_wifi day_of_week  redeye weekend  \
+count                  129780        129780      129780  129780  129780   
+unique                      2             2           7       2       2   
+top                       Yes           Yes    Saturday      No     Yes   
+freq                   104028        116766       33736  123334   84643   
+mean                      NaN           NaN         NaN     NaN     NaN   
+std                       NaN           NaN         NaN     NaN     NaN   
+min                       NaN           NaN         NaN     NaN     NaN   
+25%                       NaN           NaN         NaN     NaN     NaN   
+50%                       NaN           NaN         NaN     NaN     NaN   
+75%                       NaN           NaN         NaN     NaN     NaN   
+max                       NaN           NaN         NaN     NaN     NaN   
+
+          coach_price  firstclass_price          hours  
+count   129780.000000     129780.000000  129780.000000  
+unique            NaN               NaN            NaN  
+top               NaN               NaN            NaN  
+freq              NaN               NaN            NaN  
+mean       376.585253       1454.931785       3.631214  
+std         67.744274        162.590434       1.739118  
+min         44.415000        939.100000       1.000000  
+25%        331.445000       1302.200000       2.000000  
+50%        380.560000       1503.840000       4.000000  
+75%        426.676250       1582.370000       4.000000  
+max        593.635000       1846.780000       8.000000  
+df=pd.read_csv('https://www.stats.govt.nz/large-datasets/csv-files-for-download/annual-enterprise-survey-2024-financial-year-provisional.csv')
+---------------------------------------------------------------------------
+ParserError                               Traceback (most recent call last)
+Cell In[18], line 1
+----> 1 df=pd.read_csv('https://www.stats.govt.nz/large-datasets/csv-files-for-download/annual-enterprise-survey-2024-financial-year-provisional.csv')
+
+File ~\anaconda3\New folder\Lib\site-packages\pandas\io\parsers\readers.py:1026, in read_csv(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)
+   1013 kwds_defaults = _refine_defaults_read(
+   1014     dialect,
+   1015     delimiter,
+   (...)   1022     dtype_backend=dtype_backend,
+   1023 )
+   1024 kwds.update(kwds_defaults)
+-> 1026 return _read(filepath_or_buffer, kwds)
+
+File ~\anaconda3\New folder\Lib\site-packages\pandas\io\parsers\readers.py:626, in _read(filepath_or_buffer, kwds)
+    623     return parser
+    625 with parser:
+--> 626     return parser.read(nrows)
+
+File ~\anaconda3\New folder\Lib\site-packages\pandas\io\parsers\readers.py:1923, in TextFileReader.read(self, nrows)
+   1916 nrows = validate_integer("nrows", nrows)
+   1917 try:
+   1918     # error: "ParserBase" has no attribute "read"
+   1919     (
+   1920         index,
+   1921         columns,
+   1922         col_dict,
+-> 1923     ) = self._engine.read(  # type: ignore[attr-defined]
+   1924         nrows
+   1925     )
+   1926 except Exception:
+   1927     self.close()
+
+File ~\anaconda3\New folder\Lib\site-packages\pandas\io\parsers\c_parser_wrapper.py:234, in CParserWrapper.read(self, nrows)
+    232 try:
+    233     if self.low_memory:
+--> 234         chunks = self._reader.read_low_memory(nrows)
+    235         # destructive to chunks
+    236         data = _concatenate_chunks(chunks)
+
+File pandas/_libs/parsers.pyx:838, in pandas._libs.parsers.TextReader.read_low_memory()
+
+File pandas/_libs/parsers.pyx:905, in pandas._libs.parsers.TextReader._read_rows()
+
+File pandas/_libs/parsers.pyx:874, in pandas._libs.parsers.TextReader._tokenize_rows()
+
+File pandas/_libs/parsers.pyx:891, in pandas._libs.parsers.TextReader._check_tokenize_status()
+
+File pandas/_libs/parsers.pyx:2061, in pandas._libs.parsers.raise_parser_error()
+
+ParserError: Error tokenizing data. C error: Expected 1 fields in line 3, saw 2
+print(df.head())
+df.to_csv('annual-enterprise-survey-2024-financial-year-provisional.csv',index=False)
+df.to_excel('annual-enterprise-survey-2024-financial-year-provisional.xlsx',index=False)
+flight=pd.read_csv("flight_data.csv")
+flight.head()
+miles	passengers	delay	inflight_meal	inflight_entertainment	inflight_wifi	day_of_week	redeye	weekend	coach_price	firstclass_price	hours
+0	792	172	0	No	Yes	Yes	Sunday	Yes	Yes	338.820	1571.02	1
+1	3163	214	0	No	Yes	Yes	Sunday	No	Yes	472.655	1663.70	6
+2	1832	212	0	No	Yes	No	Friday	No	Yes	351.960	1429.86	3
+3	925	213	0	No	Yes	Yes	Saturday	No	Yes	387.835	1558.76	2
+4	967	217	0	Yes	Yes	Yes	Monday	No	No	374.735	1245.58	2
+pip install matplotlib
+Requirement already satisfied: matplotlib in c:\users\origin\anaconda3\new folder\lib\site-packages (3.10.6)
+Requirement already satisfied: contourpy>=1.0.1 in c:\users\origin\anaconda3\new folder\lib\site-packages (from matplotlib) (1.3.3)
+Requirement already satisfied: cycler>=0.10 in c:\users\origin\anaconda3\new folder\lib\site-packages (from matplotlib) (0.11.0)
+Requirement already satisfied: fonttools>=4.22.0 in c:\users\origin\anaconda3\new folder\lib\site-packages (from matplotlib) (4.60.1)
+Requirement already satisfied: kiwisolver>=1.3.1 in c:\users\origin\anaconda3\new folder\lib\site-packages (from matplotlib) (1.4.9)
+Requirement already satisfied: numpy>=1.23 in c:\users\origin\anaconda3\new folder\lib\site-packages (from matplotlib) (2.3.5)
+Requirement already satisfied: packaging>=20.0 in c:\users\origin\anaconda3\new folder\lib\site-packages (from matplotlib) (25.0)
+Requirement already satisfied: pillow>=8 in c:\users\origin\anaconda3\new folder\lib\site-packages (from matplotlib) (12.0.0)
+Requirement already satisfied: pyparsing>=2.3.1 in c:\users\origin\anaconda3\new folder\lib\site-packages (from matplotlib) (3.2.5)
+Requirement already satisfied: python-dateutil>=2.7 in c:\users\origin\anaconda3\new folder\lib\site-packages (from matplotlib) (2.9.0.post0)
+Requirement already satisfied: six>=1.5 in c:\users\origin\anaconda3\new folder\lib\site-packages (from python-dateutil>=2.7->matplotlib) (1.17.0)
+Note: you may need to restart the kernel to use updated packages.
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import statsmodels
+import matplolib.pyplot as plt
+import math
+---------------------------------------------------------------------------
+ModuleNotFoundError                       Traceback (most recent call last)
+Cell In[23], line 5
+      3 import seaborn as sns
+      4 import statsmodels
+----> 5 import matplolib.pyplot as plt
+      6 import math
+
+ModuleNotFoundError: No module named 'matplolib'
+import warnings
+warnings.filterwarnings("ignore")
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+df['inflight_meal_Num']=df['inflight_meal'].map({'No': 0,'Yes':1})
+df['weeekend_Num']=df['weekend'].replace({'No':0,'Yes':1})
+X = df[['inflight_meal_Num']]   # independent variables
+y = df['weeekend_Num']           # dependent variable
+model = LinearRegression()
+model.fit(X, y)
+sk_model = LinearRegression()
+sk_model.fit(X, y)
+print(f"SKLearn Intercept: {sk_model.intercept_}")
+print(f"SKLearn Coefficients: {sk_model.coef_}")
+predictions = model.predict(X)
+print(predictions)
+import pandas as pd
+import statsmodels.api as sm
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+print(model.summary())
+import pandas as pd
+from scipy.stats import ttest_ind
+weekend=[120,130,125,140,135]
+weekday=[100,105,98,110,102]
+t_stat,p_value=ttest_ind(weekend,weekday)
+print("T-Statistic:",t_stat)
+print("P-Value:",p_value)
+if p_value<0.05: print("Significant difference")
+else:
+    print("No significant difference")
+#used when sample size is large (n>30)
+import numpy as np
+from statsmodels.stats.weightstats import ztest
+data = [120, 122, 119, 121, 123, 125, 124, 126, 127, 128,
+        130, 131, 129, 132, 134, 133, 135, 136, 137, 138,
+        139, 140, 141, 142, 143, 144, 145, 146, 147, 148]
+z_stat, p_value = ztest(data, value=130)
+print(f"Z-statistic: {z_stat:.4f}")
+print(f"P-value: {p_value:.4f}")
+if p_value < 0.05:
+    print("Reject Null Hypothesis (significance difference)")
+else:
+    print("Fail to Reject Null (no significance difference)")
+import pandas as pd
+from scipy.stats import chi2_contingency
+
+data_crosstab = pd.DataFrame({
+    'WiFi_Yes': [50, 30], # Weekend, Weekday
+    'WiFi_No': [20, 80]
+}, index=['Weekend', 'Weekday'])
+
+chi2, p, dof, expected = chi2_contingency(data_crosstab)
+
+print(f"Chi-Square Statistic: {chi2:.4f}")
+print(f"P-value: {p:.4f}")
+
+if p < 0.05:
+    print("Variables are related")
+else:
+    print("Variables are independent")
+import pandas as pd
+from scipy.stats import chi2_contingency
+
+# Contingency table 
+# Row 1: WiFi Yes (Weekend, Weekday)
+# Row 2: WiFi No (Weekend, Weekday)
+data = [[30, 20], 
+        [10, 40]]
+
+chi2, p, dof, expected = chi2_contingency(data)
+
+print("Chi-square:", chi2)
+print("P-value:", p)
+
+if p < 0.05:
+    print("Variables are associated")
+else:
+    print("No association")
+from scipy.stats import f_oneway
+
+
+saturday = df[df['day_of_week'] == 'Saturday']['coach_price']
+friday = df[df['day_of_week'] == 'Friday']['coach_price']
+sunday = df[df['day_of_week'] == 'Sunday']['coach_price']
+
+
+f_stat, p_value = f_oneway(saturday, friday, sunday)
+
+print("F-statistic:", f_stat)
+print("P-value:", p_value)
+import pandas as pd
+from scipy.stats import ttest_ind
+
+
+df = pd.read_csv('flight_data.csv')
+
+
+df['weekend'] = df['weekend'].map({'Yes': 1, 'No': 0})
+
+weekend_price = df[df['weekend'] == 1]['coach_price']
+weekday_price = df[df['weekend'] == 0]['coach_price']
+
+t_stat, p_value = ttest_ind(weekend_price, weekday_price)
+
+print("T-test p-value:", p_value)
+
+if p_value < 0.05:
+    print("Price difference is significant")
+else:
+    print("No significant price difference")
+import random
+
+my_list = [10, 20, 30, 40, 50]
+
+# Single random element
+item = random.choice(my_list)
+
+# Multiple elements (without replacement)
+subset = random.sample(my_list, k=3)
+print("item:", item)
+print("subset:", subset)
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import statsmodels
+import matplotlib.pyplot as plt
+import math        
+num_vars = ['miles', 'passengers', 'delay',
+            'coach_price', 'firstclass_price', 'hours']
+flight[num_vars].hist(figsize=(12,8), bins=15)
+plt.suptitle("Histograms of Numerical Variables")
+plt.show()
+# Boxplot of coach price by weekend
+plt.figure(figsize=(6,4))
+sns.boxplot(x='weekend', y='coach_price', data=flight)
+
+plt.title("Coach Price on Weekend vs Weekday")
+plt.show()                                                                                            # Boxplot of first class price by redeye flight
+plt.figure(figsize=(6,4))
+sns.boxplot(x='redeye', y='firstclass_price', data=flight)
+
+plt.title("First Class Price for Redeye Flights")
+plt.show()
+# Miles vs Coach Price
+plt.figure(figsize=(6,4))
+sns.scatterplot(x='miles', y='coach_price', data=flight)
+
+plt.title("Miles vs Coach Price")
+plt.show()                                             # Predict coach price using miles
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+# Independent variable
+X = flight[['miles']]
+
+# Dependent variable
+y = flight['coach_price']
+
+# Create model
+model = LinearRegression()
+
+# Fit model
+model.fit(X, y)
+
+# Regression coefficients
+print("Intercept:", model.intercept_)
+print("Slope:", model.coef_[0])
+
+# Predicted values
+y_pred = model.predict(X)                                                                              # Scatter plot with regression line
+plt.figure(figsize=(7,5))
+
+plt.scatter(flight['miles'], flight['coach_price'])
+
+plt.plot(flight['miles'], y_pred)
+
+plt.xlabel("Miles")
+plt.ylabel("Coach Price")
+plt.title("Regression: Miles vs Coach Price")
+
+plt.show()
+No description has been provided for this image
+No description has been provided for this image
+No description has been provided for this image
+Intercept: 326.2913497531256
+Slope: 0.025068928439742903
+No description has been provided for this image
+from PIL import Image
+
+# Use the exact name of the image file
+file_name = 'yc-siu-FuRsB1qFJSU-unsplash.jpg'
+
+try:
+    # Load the image from the folder
+    img = Image.open(file_name)
+    
+    # Display the image using your computer's default photo viewer
+    img.show()
+    
+    print("Success: The image has opened correctly!")
+
+except FileNotFoundError:
+    print("Error: The file was not found. Please check if the file is in the same folder as this script.")
+except Exception as e:
+    print(f"An unexpected error occurred: {e}")
+Success: The image has opened correctly!
+from PIL import Image
+import matplotlib.pyplot as plt
+
+Image.MAX_IMAGE_PIXELS = None 
+
+
+file_name = 'yc-siu-FuRsB1qFJSU-unsplash.jpg'
+
+try:
+  
+    img = Image.open(file_name)
+    
+    
+    plt.figure(figsize=(10, 6)) 
+    plt.imshow(img)
+    
+    plt.axis('off') 
+    
+
+    plt.show()
+
+except FileNotFoundError:
+    print("Error: File not found. Make sure the image is in the same folder.")
+No description has been provided for this image
+from PIL import Image
+import matplotlib.pyplot as plt
+
+
+Image.MAX_IMAGE_PIXELS = None 
+
+questions = [
+    "1. How many flights are classified as weekend flights versus weekday flights?",
+    "2. Is there a significant correlation between the miles flown and the coach_price?",
+    "3. How much more expensive, on average, is firstclass_price compared to coach_price?",
+    "4. Does the presence of inflight_meal or inflight_wifi impact the ticket price?",
+    "5. What is the average price of a redeye flight compared to a non-redeye flight?",
+    "6. What percentage of flights offer all three amenities?",
+    "7. Are longer flights (hours > 5) more likely to provide inflight_entertainment?",
+    "8. Which amenity is the most commonly offered across all flights?",
+    "9. Does the number of passengers on a flight correlate with the length of the delay?",
+    "10. Can we reject the null hypothesis of equal coach_price (Sat vs Wed) via T-test?",
+    "11. Can we build a linear regression model to predict firstclass_price based on miles/hours?"
+]
+
+
+file_name = 'yc-siu-FuRsB1qFJSU-unsplash.jpg'
+img = Image.open(file_name)
+
+
+plt.figure(figsize=(12, 10))
+
+plt.subplot(2, 1, 1) 
+plt.imshow(img)
+plt.axis('off')
+plt.title("Flight Data Analysis Visualization", fontsize=15, pad=10)
+
+
+plt.subplot(2, 1, 2) 
+plt.axis('off') 
+
+
+y_pos = 1.0
+for q in questions:
+    plt.text(0.0, y_pos, q, fontsize=11, family='serif')
+    y_pos -= 0.1 
+
+plt.tight_layout()
+plt.show()
+No description has been provided for this image
